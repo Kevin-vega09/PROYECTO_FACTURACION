@@ -3,12 +3,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Administrar usuarios
-            <small>control de susuarios</small>
+            Administrar clientes
+            <small>control de clientes</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-            <li class="active">Administrar usuarios</li>
+            <li class="active">Administrar productos</li>
         </ol>
     </section>
 

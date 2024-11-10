@@ -10,6 +10,8 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
+  <link rel="icon" href="vistas\img\plantilla\logomini.png">
+
   <!-- PLGUINS CSS -->
 
   <!-- Bootstrap 3.3.7 -->
@@ -55,9 +57,11 @@
 
 <body class="hold-transition skin-blue sidebar-collapse sidebar-mini">
   <!-- Site wrapper -->
-  <div class="wrapper">
+  
 
     <?php
+
+    echo '<div class="wrapper">';
 
     /*Cabezote*/
     include "modulos/cabezote.php";
@@ -68,25 +72,33 @@
     /*contenido*/
 
     if (isset($_GET["ruta"])) {
-      if ($_GET["ruta"] == "inicio"||
-          $_GET["ruta"] == "usuarios"||
-          $_GET["ruta"] == "categorias"||
-          $_GET["ruta"] == "productos"||
-          $_GET["ruta"] == "clientes"||
-          $_GET["ruta"] == "ventas"||
-          $_GET["ruta"] == "crear-venta"||
-          $_GET["ruta"] == "reportes") {
+      if (
+        $_GET["ruta"] == "inicio" ||
+        $_GET["ruta"] == "usuarios" ||
+        $_GET["ruta"] == "categorias" ||
+        $_GET["ruta"] == "productos" ||
+        $_GET["ruta"] == "clientes" ||
+        $_GET["ruta"] == "ventas" ||
+        $_GET["ruta"] == "crear-venta" ||
+        $_GET["ruta"] == "reportes"
+      ) {
 
-        include "modulos/".$_GET["ruta"].".php";
+        include "modulos/" . $_GET["ruta"] . ".php";
+      } else {
+        include "modulos/404.php";
       }
+    } else {
+      include "modulos/inicio.php";
     }
 
     /*footer*/
     include "modulos/footer.php";
 
+    echo '</div>';
+
     ?>
 
-  </div>
+  
 
   <!-- ./wrapper -->
 
