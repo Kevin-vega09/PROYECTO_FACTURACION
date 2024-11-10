@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -5,7 +9,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Sistema de facturacion</title>
+  <title>Facture system</title>
 
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -55,11 +59,13 @@
   =            cuerpo documento            =
   ======================================-->
 
-<body class="hold-transition skin-blue sidebar-collapse sidebar-mini">
+<body class="hold-transition skin-blue sidebar-collapse sidebar-mini login-page">
   <!-- Site wrapper -->
-  
 
-    <?php
+
+  <?php
+
+  if (isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok") {
 
     echo '<div class="wrapper">';
 
@@ -80,7 +86,8 @@
         $_GET["ruta"] == "clientes" ||
         $_GET["ruta"] == "ventas" ||
         $_GET["ruta"] == "crear-venta" ||
-        $_GET["ruta"] == "reportes"
+        $_GET["ruta"] == "reportes"||
+        $_GET["ruta"] == "salir"
       ) {
 
         include "modulos/" . $_GET["ruta"] . ".php";
@@ -95,10 +102,13 @@
     include "modulos/footer.php";
 
     echo '</div>';
+  }else{
+    include "modulos/login.php";
+  }
 
-    ?>
+  ?>
 
-  
+
 
   <!-- ./wrapper -->
 
