@@ -9,7 +9,7 @@
         </span>
         <!-- logo normal -->
         <span class="logo-lg">
-            <img src="vistas\img\plantilla\logo.png" class="img-responsive" style="padding:-10px 0px;">
+            <img src="vistas\img\plantilla\logo.png" class="img-responsive" style="width: 110px; padding:10px 0;">
         </span>
     </a>
     <!--=====================================
