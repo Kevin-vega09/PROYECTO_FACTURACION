@@ -26,17 +26,22 @@ class ControladorUsuarios
                     $passwordAlmacenado = $respuesta["password"];
 
                     if (crypt($passwordIngresado, $passwordAlmacenado) == $passwordAlmacenado) {
-                        // Contraseña correcta
-                        $_SESSION["iniciarSesion"] = "ok";
-                        $_SESSION["id"] = $respuesta["id"];
-                        $_SESSION["nombre"] = $respuesta["nombre"];
-                        $_SESSION["usuario"] = $respuesta["usuario"];
-                        $_SESSION["foto"] = $respuesta["foto"];
-                        $_SESSION["perfil"] = $respuesta["perfil"];
 
-                        echo '<script>
+                        if ($respuesta["estado"] == 1) {
+                            // Contraseña correcta
+                            $_SESSION["iniciarSesion"] = "ok";
+                            $_SESSION["id"] = $respuesta["id"];
+                            $_SESSION["nombre"] = $respuesta["nombre"];
+                            $_SESSION["usuario"] = $respuesta["usuario"];
+                            $_SESSION["foto"] = $respuesta["foto"];
+                            $_SESSION["perfil"] = $respuesta["perfil"];
+
+                            echo '<script>
                     window.location = "inicio";
                     </script>';
+                        } else {
+                            echo '<br><div class="alert alert-danger">Usuario esta inactivo.</div>';
+                        }
                     } else {
                         echo '<br><div class="alert alert-danger">Usuario o contraseña incorrecta. Vuelve a intentar.</div>';
                     }
