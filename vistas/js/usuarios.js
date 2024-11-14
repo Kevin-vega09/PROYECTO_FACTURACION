@@ -45,80 +45,106 @@ $(".nuevaFoto").change(function () {
     =     Editar Usuario     =
      ======================================*/
 
-     $(document).on("click", ".btnEditarUsuario", function () {
-        var idUsuario = $(this).attr("idUsuario");
-    
-        console.log("ID Usuario:", idUsuario);
-    
-        var datos = new FormData();
-        datos.append("idUsuario", idUsuario);
-    
-        $.ajax({
-            url: "ajax/usuarios.ajax.php",
-            method: "POST",
-            data: datos,
-            cache: false,
-            contentType: false,
-            processData: false,
-            dataType: "json",
-            success: function (respuesta) {
-                $("#editarNombre").val(respuesta["nombre"]);
-                $("#editarUsuario").val(respuesta["usuario"]);
-                $("#editarPerfil").html(respuesta["perfil"]);
-                $("#editarPerfil").val(respuesta["perfil"]);
-                $("#fotoActual").val(respuesta["foto"]);
+$(document).on("click", ".btnEditarUsuario", function () {
+  var idUsuario = $(this).attr("idUsuario");
 
-                $("#passwordActual").val(respuesta["password"]);
+  console.log("ID Usuario:", idUsuario);
 
-                if(respuesta["foto"] != ""){
-                    $(".previsualizar").attr("src", respuesta["foto"]);
-                }
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.error("Error en la solicitud AJAX:", textStatus, errorThrown);
-            },
-        });
-    });
+  var datos = new FormData();
+  datos.append("idUsuario", idUsuario);
 
-      /*=====================================
+  $.ajax({
+    url: "ajax/usuarios.ajax.php",
+    method: "POST",
+    data: datos,
+    cache: false,
+    contentType: false,
+    processData: false,
+    dataType: "json",
+    success: function (respuesta) {
+      $("#editarNombre").val(respuesta["nombre"]);
+      $("#editarUsuario").val(respuesta["usuario"]);
+      $("#editarPerfil").html(respuesta["perfil"]);
+      $("#editarPerfil").val(respuesta["perfil"]);
+      $("#fotoActual").val(respuesta["foto"]);
+
+      $("#passwordActual").val(respuesta["password"]);
+
+      if (respuesta["foto"] != "") {
+        $(".previsualizar").attr("src", respuesta["foto"]);
+      }
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+      console.error("Error en la solicitud AJAX:", textStatus, errorThrown);
+    },
+  });
+});
+
+/*=====================================
       =     Editar Usuario     =
       ======================================*/
 
-     $(document).on("click", ".btnActivar", function () {
-      
-      var idUsuario = $(this).attr("idUsuario");
-      var estadoUsuario = $(this).attr("estadoUsuario");
+$(document).on("click", ".btnActivar", function () {
+  var idUsuario = $(this).attr("idUsuario");
+  var estadoUsuario = $(this).attr("estadoUsuario");
 
-      var datos = new FormData();
-      datos.append("activarId", idUsuario);
-      datos.append("activarUsuario", estadoUsuario);
+  var datos = new FormData();
+  datos.append("activarId", idUsuario);
+  datos.append("activarUsuario", estadoUsuario);
 
-      $.ajax({
-
-        url: "ajax/usuarios.ajax.php",
-        method: "POST",
-        data: datos,
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function(respuesta){
-
-        } 
-
-      })
-
-
-      if(estadoUsuario == 0 ){
-        $(this).removeClass('btn-success');
-        $(this).addClass('btn-danger');
-        $(this).html('Desactivado');
-        $(this).attr('estadoUsuario', 1);
-      }else{
-
-        $(this).addClass('btn-success');
-        $(this).removeClass('btn-danger');
-        $(this).html('Activado');
-        $(this).attr('estadoUsuario', 0);
-      }
-
+  $.ajax({
+    url: "ajax/usuarios.ajax.php",
+    method: "POST",
+    data: datos,
+    cache: false,
+    contentType: false,
+    processData: false,
+    success: function (respuesta) {},
   });
+
+  if (estadoUsuario == 0) {
+    $(this).removeClass("btn-success");
+    $(this).addClass("btn-danger");
+    $(this).html("Desactivado");
+    $(this).attr("estadoUsuario", 1);
+  } else {
+    $(this).addClass("btn-success");
+    $(this).removeClass("btn-danger");
+    $(this).html("Activado");
+    $(this).attr("estadoUsuario", 0);
+  }
+});
+
+//REVISAR SI EL USUARIO YA ESTA REGISTRADO
+
+$("#nuevoUsuario").change(function () {
+  $(".alert").remove();
+
+  var usuario = $(this).val();
+
+  var datos = new FormData();
+  datos.append("validarUsuario", usuario);
+
+  $.ajax({
+    url: "ajax/usuarios.ajax.php",
+    method: "POST",
+    data: datos,
+    cache: false,
+    contentType: false,
+    processData: false,
+    success: function (respuesta) {
+      var existeUsuario = JSON.parse(respuesta); // Convertimos la respuesta en JSON
+
+      if (existeUsuario) {
+        $("#nuevoUsuario")
+          .parent()
+          .after(
+            '<div class="alert alert-warning">Este usuario ya existe, intenta con otro</div>'
+          );
+        $("#nuevoUsuario").val("");
+      }
+    },
+  });
+});
+
+
