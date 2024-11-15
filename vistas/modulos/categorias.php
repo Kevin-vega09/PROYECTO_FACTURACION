@@ -50,17 +50,15 @@
                         $item = null;
                         $valor = null;
 
-                        $categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+                        $categorias = ControlCategorias::ctrMostrarCategorias($item, $valor);
+  
+                        foreach ($categorias as $key => $value){
 
-                        var_dump($categorias);
+                            echo' <tr>
 
-                        ?>
+                            <td>'.($key+1).'</td>
 
-                        <tr>
-
-                            <td>1</td>
-
-                            <td>Equipos electromecanicos</td>
+                            <td class="text-uppercase">'.$value["nombre"].'</td>
                             <td>
                                 <div class="btn-group">
                                     <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
@@ -68,10 +66,11 @@
                                 </div>
                             </td>
 
+                        </tr>';
+                        
+                        }
 
-
-                        </tr>
-
+                        ?>
 
                     </tbody>
 
