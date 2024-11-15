@@ -30,7 +30,7 @@
 
             <div class="box-body">
 
-                <table class="table table-bordered table-striped dt-responsive tablas">
+                <table class="table table-bordered table-striped dt-responsive tablas"width="100%">
 
                     <thead>
 
@@ -44,23 +44,33 @@
                     </thead>
 
                     <tbody>
+                    
+                        <?php
 
-                        <tr>
+                        $item = null;
+                        $valor = null;
 
-                            <td>1</td>
+                        $categorias = ControlCategorias::ctrMostrarCategorias($item, $valor);
+  
+                        foreach ($categorias as $key => $value){
 
-                            <td>Equipos electromecanicos</td>
+                            echo' <tr>
+
+                            <td>'.($key+1).'</td>
+
+                            <td class="text-uppercase">'.$value["nombre"].'</td>
                             <td>
                                 <div class="btn-group">
-                                    <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-warning" data-toggle="modal" data-target="#modalEditarCategoria"><i class="fa fa-pencil"></i></button>
                                     <button class="btn btn-danger"><i class="fa fa-times"></i></button>
                                 </div>
                             </td>
 
+                        </tr>';
+                        
+                        }
 
-
-                        </tr>
-
+                        ?>
 
                     </tbody>
 

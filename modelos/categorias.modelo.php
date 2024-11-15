@@ -10,7 +10,11 @@ class ModeloCategorias{
 
     static public function mdlingresarCategorias($tabla, $datos){
 
+<<<<<<< HEAD
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombre) VALUES (:nombre)");
+=======
         $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (nombre) VALUES (:nombre)");
+>>>>>>> d704f23714b850473538aacb28b971f363bb1b5b
         $stmt->bindParam(":nombre", $datos, PDO::PARAM_STR);
         if($stmt->execute()){
 
@@ -24,5 +28,31 @@ class ModeloCategorias{
 
         $stmt ->close();
         $stmt = null;
+    }
+
+    /* ========================================
+    MOSTRAR CATEGORIAS
+    =========================================*/
+
+    static public function mdlMostrarCategorias($tabla, $item, $valor){
+
+        if($item != null){
+
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+            $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+            $stmt -> execute();
+            return $stmt -> fetch();
+
+        }else{
+
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+            $stmt -> execute();
+            return $stmt-> fetchAll();
+
+        }
+
+        $stmt-> close();
+        $stmt= null;
+
     }
 }
