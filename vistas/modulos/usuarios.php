@@ -30,7 +30,7 @@
 
             <div class="box-body">
 
-                <table class="table table-bordered table-striped dt-responsive tablas">
+                <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
 
                     <thead>
 
@@ -85,7 +85,7 @@
                             <td>
                                 <div class="btn-group">
                                     <button class="btn btn-warning btnEditarUsuario" idUsuario="' . $value["id"] . '" data-toggle="modal" data-target = "#modalEditarUsuario"><i class="fa fa-pencil"></i></button>
-                                    <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+                                    <button class="btn btn-danger btnEliminarUsuario" idUsuario="'.$value["id"] .'" fotoUsuario="'.$value["foto"] .'" usuario="'.$value["usuario"] .'"><i class="fa fa-times"></i></button>
                                 </div>
                             </td>
                         </tr>';
@@ -301,3 +301,10 @@ MODAL EDITAR USUARIO
     </div>
 
 </div>
+
+<?php
+
+$borrarUsuario = new ControladorUsuarios();
+$borrarUsuario->ctrBorrarUsuario();
+
+?>

@@ -30,7 +30,7 @@
 
             <div class="box-body">
 
-                <table class="table table-bordered table-striped dt-responsive tablas">
+                <table class="table table-bordered table-striped dt-responsive tablas"width="100%">
 
                     <thead>
 
@@ -61,7 +61,7 @@
                             <td class="text-uppercase">'.$value["nombre"].'</td>
                             <td>
                                 <div class="btn-group">
-                                    <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-warning" data-toggle="modal" data-target="#modalEditarCategoria"><i class="fa fa-pencil"></i></button>
                                     <button class="btn btn-danger"><i class="fa fa-times"></i></button>
                                 </div>
                             </td>
