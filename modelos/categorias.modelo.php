@@ -10,8 +10,8 @@ class ModeloCategorias{
 
     static public function mdlingresarCategorias($tabla, $datos){
 
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(categoria) VALUES (:categoria)");
-        $stmt->bindParam(":categoria", $datos, PDO::PARAM_STR);
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (nombre) VALUES (:nombre)");
+        $stmt->bindParam(":nombre", $datos, PDO::PARAM_STR);
         if($stmt->execute()){
 
             return "Ok";
