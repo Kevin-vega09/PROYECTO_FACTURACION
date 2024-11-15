@@ -117,12 +117,6 @@ MODAL AGREGAR USUARIO
                     <button type="submit" class="btn btn-primary">Guardar Categoria</button>
                 </div>
 
-                <?php
-                $crearCategoria=new ControlCategorias();
-                $crearCategoria->ctrCrearCategoria();
-
-                ?>
-
             </form>
 
         </div>
