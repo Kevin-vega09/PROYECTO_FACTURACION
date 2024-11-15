@@ -88,7 +88,7 @@ class ControladorUsuarios
 
                 $ruta = "";
 
-                if (isset($_FILES["nuevaFoto"]["tmp_name"])&& !empty($_FILES["nuevaFoto"]["tmp_name"])) {
+                if (isset($_FILES["nuevaFoto"]["tmp_name"]) && !empty($_FILES["nuevaFoto"]["tmp_name"])) {
 
                     list($ancho, $alto) = getimagesize($_FILES["nuevaFoto"]["tmp_name"]);
 
@@ -336,6 +336,51 @@ class ControladorUsuarios
                         window.location = "usuarios";
                     }
                 });
+            </script>';
+            }
+        }
+    }
+
+    //BORRAR USUARIO
+
+    static public function ctrBorrarUsuario()
+    {
+
+        if (isset($_GET["idUsuario"])) {
+
+            $tabla = "usuarios";
+            $datos = $_GET["idUsuario"];
+
+            if ($_GET["fotoUsuario"] != "") {
+
+                unlink($_GET["fotoUsuario"]);
+                rmdir('vistas/img/usuarios/'.$_GET["usuario"]);
+            }
+
+            $respuesta = ModeloUsuarios::mdlBorrarUsuario($tabla, $datos);
+
+            if ($respuesta == "ok") {
+
+                echo '<script>
+
+                swal({
+
+                    type: "success",
+                    title: "¡El usuario ha sido eliminado correctamente!",
+                    showConfirmButton: true,
+                    confirmButtonText: "Cerrar"
+
+                }).then(function(result){
+
+                    if(result.value){
+                    
+                        window.location = "usuarios";
+
+                    }
+
+                });
+            
+
             </script>';
             }
         }
