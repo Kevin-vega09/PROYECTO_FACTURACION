@@ -99,7 +99,19 @@ $(document).on("click", ".btnActivar", function () {
     cache: false,
     contentType: false,
     processData: false,
-    success: function (respuesta) {},
+    success: function (respuesta) {
+      if (window.matchMedia("(max-width:767px)").matches) {
+        swal({
+          title: "El usuario ha sido actualizado",
+          type: "success",
+          confirmButtonText: "¡Cerrar!",
+        }).then(function (result) {
+          if (result.value) {
+            window.location = "usuarios";
+          }
+        });
+      }
+    },
   });
 
   if (estadoUsuario == 0) {
@@ -150,29 +162,28 @@ $("#nuevoUsuario").change(function () {
 //ELIMINAR USUARIO
 
 $(document).on("click", ".btnEliminarUsuario", function () {
-
   idUsuario = $(this).attr("idUsuario");
   fotoUsuario = $(this).attr("fotoUsuario");
   usuario = $(this).attr("usuario");
 
-swal ({
-
-  title: '¿Está seguro de borrar el usuario?',
-  text: "¡Si no lo está puede cancelar la acción!",
-  type: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  cancelButtonText: 'Cancelar',
-  confirmButtonText: 'si, borrar usuario!'
-
-}).then((result)=>{
-
-  if(result.value){
-
-    window.location = "index.php?ruta=usuarios&idUsuario="+idUsuario+"&usuario="+usuario+"&fotoUsuario="+fotoUsuario;
-  }
-
-})
-
-})
+  swal({
+    title: "¿Está seguro de borrar el usuario?",
+    text: "¡Si no lo está puede cancelar la acción!",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    cancelButtonText: "Cancelar",
+    confirmButtonText: "si, borrar usuario!",
+  }).then((result) => {
+    if (result.value) {
+      window.location =
+        "index.php?ruta=usuarios&idUsuario=" +
+        idUsuario +
+        "&usuario=" +
+        usuario +
+        "&fotoUsuario=" +
+        fotoUsuario;
+    }
+  });
+});
