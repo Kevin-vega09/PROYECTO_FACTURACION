@@ -56,17 +56,55 @@ class ControladorUsuarios
                             if ($ultimoLogin == "ok") {
 
                                 echo '<script>
-                                 window.location = "inicio";
-                                    </script>';
+                                swal({
+                                    title: "¡Bienvenido!",
+                                    text: "Estás siendo redirigido al inicio.",
+                                    type: "success",
+                                    timer: 2000,  // 2 segundos
+                                    showConfirmButton: false
+                                }).then(() => {
+                                    window.location = "inicio";  // Redirige a "inicio" automáticamente
+                                });
+                            </script>';
                             }
                         } else {
-                            echo '<br><div class="alert alert-danger">Usuario esta inactivo.</div>';
+                            echo '<script>
+                        swal({
+                            title: "¡Error!",
+                            text: "Usuario inactivo, comunicate con el administrador",
+                            type: "error",
+                            timer: 3000,  // 3 segundos
+                            showConfirmButton: false
+                        }).then(() => {
+                            window.location = "ingreso";  // Redirige a la página de login automáticamente
+                        });
+                    </script>';
                         }
                     } else {
-                        echo '<br><div class="alert alert-danger">Usuario o contraseña incorrecta. Vuelve a intentar.</div>';
+                        echo '<script>
+                        swal({
+                            title: "¡Error!",
+                            text: "Usuario o contraseña incorrecta. Vuelve a intentar.",
+                            type: "error",
+                            timer: 3000,  // 3 segundos
+                            showConfirmButton: false
+                        }).then(() => {
+                            window.location = "ingreso";  // Redirige a la página de login automáticamente
+                        });
+                    </script>';
                     }
                 } else {
-                    echo '<br><div class="alert alert-danger">Usuario o contraseña incorrecta. Vuelve a intentar.</div>';
+                    echo '<script>
+                    swal({
+                        title: "¡Error!",
+                        text: "Usuario o contraseña incorrecta. Vuelve a intentar.",
+                        type: "error",
+                        timer: 3000,  // 3 segundos
+                        showConfirmButton: false
+                    }).then(() => {
+                        window.location = "ingreso";  // Redirige a la página de login automáticamente
+                    });
+                </script>';
                 }
             }
         }
@@ -354,7 +392,7 @@ class ControladorUsuarios
             if ($_GET["fotoUsuario"] != "") {
 
                 unlink($_GET["fotoUsuario"]);
-                rmdir('vistas/img/usuarios/'.$_GET["usuario"]);
+                rmdir('vistas/img/usuarios/' . $_GET["usuario"]);
             }
 
             $respuesta = ModeloUsuarios::mdlBorrarUsuario($tabla, $datos);
