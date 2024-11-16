@@ -15,7 +15,7 @@ class AjaxCategorias{
         $item ="id";
         $valor = $this->idNombre;
 
-        $respuesta = ControlCategorias::crtMostrarCategorias($item, $valor);
+        $respuesta = ControlCategorias::ctrMostrarCategorias($item, $valor);
 
         echo json_encode($respuesta);
     }
@@ -26,7 +26,7 @@ EDITAR CATEGORIA
 ========================*/
 if (isset($_POST["idNombre"])){
 
-    $categoria = new AjaxCategoria();
+    $categoria = new AjaxCategorias();
     $categoria -> idNombre = $_POST["idNombre"];
     $categoria -> ajaxEditarCategoria();
 

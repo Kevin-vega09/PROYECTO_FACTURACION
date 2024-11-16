@@ -12,11 +12,6 @@ class ModeloCategorias{
 
         $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombre) VALUES (:nombre)");
 
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (nombre) VALUES (:nombre)");
-
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombre) VALUES (:nombre)");
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (nombre) VALUES (:nombre)");
-
         $stmt->bindParam(":nombre", $datos, PDO::PARAM_STR);
         if($stmt->execute()){
 
