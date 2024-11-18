@@ -1,32 +1,27 @@
+
 <div class="content-wrapper">
-
-  <section class="content-header">
     
-    <h1>
-      
-      Administrar categorías
+    <section class="content-header">
+        <h1>
+            Administrar categorias
+            <small>control de susuarios</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
+            <li class="active">Administrar categorias</li>
+        </ol>
+    </section>
+
+ 
+    <section class="content">
+
     
-    </h1>
+        <div class="box">
+            <div class="box-header with-border">
 
-    <ol class="breadcrumb">
-      
-      <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      
-      <li class="active">Administrar categorías</li>
-    
-    </ol>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarCategoria">
 
-  </section>
-
-  <section class="content">
-
-    <div class="box">
-
-      <div class="box-header with-border">
-  
-        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarCategoria">
-          
-          Agregar categoría
+                    Agregar categoria
 
         </button>
 
@@ -94,9 +89,9 @@
 
 </div>
 
-<!--=====================================
-MODAL AGREGAR CATEGORÍA
-======================================-->
+<!-- ====================== 
+MODAL AGREGAR CATEGORIA
+========================-->
 
 <div id="modalAgregarCategoria" class="modal fade" role="dialog">
   
@@ -169,7 +164,10 @@ MODAL AGREGAR CATEGORÍA
 
   </div>
 
+<<<<<<< HEAD
+=======
 </div>
+>>>>>>> 3381af85e0d1ed7cf173d4335fabf004008a1d2b
 
 <!--=====================================
 MODAL EDITAR CATEGORÍA
@@ -222,17 +220,28 @@ MODAL EDITAR CATEGORÍA
           </div>
 
         </div>
+        <!-- ====================== 
+                PIE DEL MODAL
+                ========================-->
+<<<<<<< HEAD
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                </div>
 
-        <!--=====================================
-        PIE DEL MODAL
-        ======================================-->
+                <!-- <?php
+                $crearCategoria=new ControlCategorias();
+                $crearCategoria->ctrCrearCategoria();
 
+                ?> -->
+
+            </form>
+
+=======
         <div class="modal-footer">
-
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-
-          <button type="submit" class="btn btn-primary">Guardar cambios</button>
-
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+            <button type="submit" class="btn btn-primary">Guardar cambios</button>
+>>>>>>> 3381af85e0d1ed7cf173d4335fabf004008a1d2b
         </div>
 
       <?php
@@ -248,13 +257,16 @@ MODAL EDITAR CATEGORÍA
 
   </div>
 
+<<<<<<< HEAD
+
+
+
+
+
+
+
+
+
+=======
 </div>
-
-<?php
-
-  $borrarCategoria = new ControladorCategorias();
-  $borrarCategoria -> ctrBorrarCategoria();
-
-?>
-
-
+>>>>>>> 3381af85e0d1ed7cf173d4335fabf004008a1d2b

@@ -137,6 +137,8 @@ MODAL AGREGAR CATEGORIA
     </div>
 
 </div>
+<<<<<<< HEAD
+=======
 
 </div>
 
@@ -197,3 +199,4 @@ MODAL EDITAR CATEGORIA
 </div>
 
 </div>
+>>>>>>> 3381af85e0d1ed7cf173d4335fabf004008a1d2b
