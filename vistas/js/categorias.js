@@ -1,26 +1,57 @@
-/*====================== 
+/*=============================================
 EDITAR CATEGORIA
-========================*/
-$(document).on("click", ".btnEditarCategoria", function () {
-  console.log("Botón clickeado");
-  var idNombre = $(this).attr("idNombre");
-  var datos = new FormData();
-  datos.append("idNombre", idNombre);
-  $.ajax({
-    url: "ajax/categorias.ajax.php",
-    method: "POST",
-    data: datos,
-    cache: false,
-    contentType: false,
-    processData: false,
-    dataType: "json",
-    success: function (respuesta) {
-      $("#idCategoria").val(respuesta["id"]);
-      $("#editarCategoria").val(respuesta["nombre"]);
-    },
-    error: function (xhr, status, error) {
-      console.error("Error en la solicitud:", error);
-      console.error("Detalles:", xhr.responseText);
-    },
-  });
-});
+=============================================*/
+$(".tablas").on("click", ".btnEditarCategoria", function(){
+
+	var idCategoria = $(this).attr("idCategoria");
+
+	var datos = new FormData();
+	datos.append("idCategoria", idCategoria);
+
+	$.ajax({
+		url: "ajax/categorias.ajax.php",
+		method: "POST",
+      	data: datos,
+      	cache: false,
+     	contentType: false,
+     	processData: false,
+     	dataType:"json",
+     	success: function(respuesta){
+
+     		$("#editarCategoria").val(respuesta["categoria"]);
+     		$("#idCategoria").val(respuesta["id"]);
+
+     	}
+
+	})
+
+
+})
+
+/*=============================================
+ELIMINAR CATEGORIA
+=============================================*/
+$(".tablas").on("click", ".btnEliminarCategoria", function(){
+
+	 var idCategoria = $(this).attr("idCategoria");
+
+	 swal({
+	 	title: '¿Está seguro de borrar la categoría?',
+	 	text: "¡Si no lo está puede cancelar la acción!",
+	 	type: 'warning',
+	 	showCancelButton: true,
+	 	confirmButtonColor: '#3085d6',
+	 	cancelButtonColor: '#d33',
+	 	cancelButtonText: 'Cancelar',
+	 	confirmButtonText: 'Si, borrar categoría!'
+	 }).then(function(result){
+
+	 	if(result.value){
+
+	 		window.location = "index.php?ruta=categorias&idCategoria="+idCategoria;
+
+	 	}
+
+	 })
+
+})

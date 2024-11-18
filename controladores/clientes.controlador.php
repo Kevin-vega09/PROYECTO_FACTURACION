@@ -1,39 +1,35 @@
 <?php
 
-class ControladorClientes
-{
+class ControladorClientes{
 
-    //CREAR CLIENTES
+	/*=============================================
+	CREAR CLIENTES
+	=============================================*/
 
-    static public function ctrCrearCliente()
-    {
+	static public function ctrCrearCliente(){
 
-        if (isset($_POST["nuevoCliente"])) {
+		if(isset($_POST["nuevoCliente"])){
 
-            if (
-                preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoCliente"]) &&
-                preg_match('/^[0-9]+$/', $_POST["nuevoDocumentoId"]) &&
-                preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["nuevoEmail"]) &&
-                preg_match('/^[()\-0-9 ]+$/', $_POST["nuevoTelefono"]) &&
-                preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST["nuevaDireccion"])
-            ) {
+			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoCliente"]) &&
+			   preg_match('/^[0-9]+$/', $_POST["nuevoDocumentoId"]) &&
+			   preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["nuevoEmail"]) && 
+			   preg_match('/^[()\-0-9 ]+$/', $_POST["nuevoTelefono"]) && 
+			   preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST["nuevaDireccion"])){
 
-                $tabla = "clientes";
+			   	$tabla = "clientes";
 
-                $datos = array(
-                    "nombre" => $_POST["nuevoCliente"],
-                    "documento" => $_POST["nuevoDocumentoId"],
-                    "email" => $_POST["nuevoEmail"],
-                    "telefono" => $_POST["nuevoTelefono"],
-                    "direccion" => $_POST["nuevaDireccion"],
-                    "fecha_nacimiento" => $_POST["nuevaFechaNacimiento"]
-                );
+			   	$datos = array("nombre"=>$_POST["nuevoCliente"],
+					           "documento"=>$_POST["nuevoDocumentoId"],
+					           "email"=>$_POST["nuevoEmail"],
+					           "telefono"=>$_POST["nuevoTelefono"],
+					           "direccion"=>$_POST["nuevaDireccion"],
+					           "fecha_nacimiento"=>$_POST["nuevaFechaNacimiento"]);
 
-                $respuesta = ModeloClientes::mdlIngresarCliente($tabla, $datos);
+			   	$respuesta = ModeloClientes::mdlIngresarCliente($tabla, $datos);
 
-                if ($respuesta == "ok") {
+			   	if($respuesta == "ok"){
 
-                    echo '<script>
+					echo'<script>
 
 					swal({
 						  type: "success",
@@ -49,10 +45,12 @@ class ControladorClientes
 								})
 
 					</script>';
-                }
-            } else {
 
-                echo '<script>
+				}
+
+			}else{
+
+				echo'<script>
 
 					swal({
 						  type: "error",
@@ -68,55 +66,58 @@ class ControladorClientes
 						})
 
 			  	</script>';
-            }
-        }
-    }
-
-    //MOSTRAR CLIENTES
-
-    static public function ctrMostrarClientes($item, $valor)
-    {
-
-        $tabla = "clientes";
-
-        $respuesta = ModeloClientes::mdlMostrarClientes($tabla, $item, $valor);
-
-        return $respuesta;
-    }
 
 
-    //EDITAR CLIENTES
 
-    static public function ctrEditarClientes()
-    {
+			}
 
-        if (isset($_POST["editarCliente"])) {
+		}
 
-            if (
-                preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarCliente"]) &&
-                preg_match('/^[0-9]+$/', $_POST["editarDocumentoId"]) &&
-                preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["editarEmail"]) &&
-                preg_match('/^[()\-0-9 ]+$/', $_POST["editarTelefono"]) &&
-                preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST["editarDireccion"])
-            ) {
+	}
 
-                $tabla = "clientes";
+	/*=============================================
+	MOSTRAR CLIENTES
+	=============================================*/
 
-                $datos = array(
-                    "id" => $_POST["idCliente"],
-                    "nombre" => $_POST["editarCliente"],
-                    "documento" => $_POST["editarDocumentoId"],
-                    "email" => $_POST["editarEmail"],
-                    "telefono" => $_POST["editarTelefono"],
-                    "direccion" => $_POST["editarDireccion"],
-                    "fecha_nacimiento" => $_POST["editarFechaNacimiento"]
-                );
+	static public function ctrMostrarClientes($item, $valor){
 
-                $respuesta = ModeloClientes::mdlEditarCliente($tabla, $datos);
+		$tabla = "clientes";
 
-                if ($respuesta == "ok") {
+		$respuesta = ModeloClientes::mdlMostrarClientes($tabla, $item, $valor);
 
-                    echo '<script>
+		return $respuesta;
+
+	}
+
+	/*=============================================
+	EDITAR CLIENTE
+	=============================================*/
+
+	static public function ctrEditarCliente(){
+
+		if(isset($_POST["editarCliente"])){
+
+			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarCliente"]) &&
+			   preg_match('/^[0-9]+$/', $_POST["editarDocumentoId"]) &&
+			   preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["editarEmail"]) && 
+			   preg_match('/^[()\-0-9 ]+$/', $_POST["editarTelefono"]) && 
+			   preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST["editarDireccion"])){
+
+			   	$tabla = "clientes";
+
+			   	$datos = array("id"=>$_POST["idCliente"],
+			   				   "nombre"=>$_POST["editarCliente"],
+					           "documento"=>$_POST["editarDocumentoId"],
+					           "email"=>$_POST["editarEmail"],
+					           "telefono"=>$_POST["editarTelefono"],
+					           "direccion"=>$_POST["editarDireccion"],
+					           "fecha_nacimiento"=>$_POST["editarFechaNacimiento"]);
+
+			   	$respuesta = ModeloClientes::mdlEditarCliente($tabla, $datos);
+
+			   	if($respuesta == "ok"){
+
+					echo'<script>
 
 					swal({
 						  type: "success",
@@ -124,18 +125,20 @@ class ControladorClientes
 						  showConfirmButton: true,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
-						if (result.value) {
+									if (result.value) {
 
-						window.location = "clientes";
+									window.location = "clientes";
 
 									}
 								})
 
 					</script>';
-                }
-            } else {
 
-                echo '<script>
+				}
+
+			}else{
+
+				echo'<script>
 
 					swal({
 						  type: "error",
@@ -151,44 +154,53 @@ class ControladorClientes
 						})
 
 			  	</script>';
-            }
-        }
-    }
 
-    //BORRAR CLIENTE
 
-    static public function ctrEliminarClientes(){
 
-        if(isset($_GET["idCliente"])){
-            $tabla = "clientes";
-            $datos = $_GET["idCliente"];
+			}
 
-            $respuesta = ModeloClientes::mdlEliminarCliente($tabla, $datos);
+		}
 
-            if ($respuesta == "ok") {
+	}
 
-                echo '<script>
+	/*=============================================
+	ELIMINAR CLIENTE
+	=============================================*/
 
-                swal({
+	static public function ctrEliminarCliente(){
 
-                    type: "success",
-                    title: "¡El cliente ha sido eliminado correctamente!",
-                    showConfirmButton: true,
-                    confirmButtonText: "Cerrar"
+		if(isset($_GET["idCliente"])){
 
-                }).then(function(result){
+			$tabla ="clientes";
+			$datos = $_GET["idCliente"];
 
-                    if(result.value){
-                    
-                        window.location = "clientes";
+			$respuesta = ModeloClientes::mdlEliminarCliente($tabla, $datos);
 
-                    }
+			if($respuesta == "ok"){
 
-                });
-            
+				echo'<script>
 
-            </script>';
-            }
-        }
-    }
+				swal({
+					  type: "success",
+					  title: "El cliente ha sido borrado correctamente",
+					  showConfirmButton: true,
+					  confirmButtonText: "Cerrar",
+					  closeOnConfirm: false
+					  }).then(function(result){
+								if (result.value) {
+
+								window.location = "clientes";
+
+								}
+							})
+
+				</script>';
+
+			}		
+
+		}
+
+	}
+
 }
+

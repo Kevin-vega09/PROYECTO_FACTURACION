@@ -36,7 +36,6 @@ $(".tablas").DataTable({
   },
 });
 
-
 /*=====================================
 =            Input Mask               =
 ======================================*/
@@ -44,4 +43,12 @@ $(document).ready(function () {
   $("#datemask").inputmask("dd/mm/yyyy", { placeholder: "dd/mm/yyyy" });
   $("#datemask2").inputmask("mm/dd/yyyy", { placeholder: "mm/dd/yyyy" });
   $("[data-mask]").inputmask();
+});
+
+/*=============================================
+ //iCheck for checkbox and radio inputs
+=============================================*/
+$('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+  checkboxClass: "icheckbox_minimal-blue",
+  radioClass: "iradio_minimal-blue",
 });
